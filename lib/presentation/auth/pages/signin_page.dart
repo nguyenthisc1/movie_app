@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/common/helper/messages/display_message.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
-import 'package:movie_app/data/auth/models/signup_req_params.dart';
-import 'package:movie_app/domain/auth/usecaes/signup.dart';
+import 'package:movie_app/data/auth/models/signin_req_params.dart';
+import 'package:movie_app/domain/auth/usecaes/signin.dart';
 import 'package:movie_app/presentation/auth/pages/signup_page.dart';
 import 'package:movie_app/presentation/home/pages/home_page.dart';
 import 'package:movie_app/service_locator.dart';
@@ -64,8 +64,8 @@ class SigninPage extends StatelessWidget {
     return ReactiveButton(
       title: "Sign in",
       onPressed:
-          () async => sl<SignupUseCase>().call(
-            params: SignupReqParams(
+          () async => await sl<SigninUseCase>().call(
+            params: SigninReqParams(
               email: _emailController.text,
               password: _passwordController.text,
             ),

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:movie_app/data/auth/models/signin_req_params.dart';
 import 'package:movie_app/data/auth/models/signup_req_params.dart';
 import 'package:movie_app/data/auth/sources/auth_api_service.dart';
 import 'package:movie_app/domain/auth/repositories/auth_repository.dart';
@@ -34,6 +35,22 @@ class AuthRepositoryImpl extends AuthRepository {
     return data.fold(
       (error) {
         print(error);
+        return Left(error);
+      },
+      (data) async {
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        sharedPreferences.setString('token', data['user']['token']);
+        return Right(data);
+      },
+    );
+  }
+
+  @override
+  Future<Either> signin(SigninReqParams params) async {
+    var data = await sl<AuthService>().signin(params);
+    return data.fold(
+      (error) {
         return Left(error);
       },
       (data) async {
