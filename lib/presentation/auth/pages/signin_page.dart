@@ -5,7 +5,10 @@ import 'package:movie_app/presentation/auth/pages/signup_page.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+  SigninPage({super.key});
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
