@@ -1,7 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/common/helper/messages/display_message.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
+import 'package:movie_app/data/auth/models/signup_req_params.dart';
+import 'package:movie_app/domain/auth/usecaes/signup.dart';
 import 'package:movie_app/presentation/auth/pages/signup_page.dart';
+import 'package:movie_app/presentation/home/pages/home_page.dart';
+import 'package:movie_app/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SigninPage extends StatelessWidget {
@@ -25,7 +30,7 @@ class SigninPage extends StatelessWidget {
             const SizedBox(height: 12),
             _passField(),
             const SizedBox(height: 36),
-            _signinButton(),
+            _signinButton(context),
             const SizedBox(height: 24),
             _signupText(context),
           ],
@@ -42,19 +47,35 @@ class SigninPage extends StatelessWidget {
   }
 
   Widget _emailField() {
-    return TextField(decoration: InputDecoration(hintText: 'Email'));
+    return TextField(
+      controller: _emailController,
+      decoration: InputDecoration(hintText: 'Email'),
+    );
   }
 
   Widget _passField() {
-    return TextField(decoration: InputDecoration(hintText: 'Password'));
+    return TextField(
+      controller: _passwordController,
+      decoration: InputDecoration(hintText: 'Password'),
+    );
   }
 
-  Widget _signinButton() {
+  Widget _signinButton(BuildContext context) {
     return ReactiveButton(
       title: "Sign in",
-      onPressed: () async {},
-      onSuccess: () {},
-      onFailure: (error) {},
+      onPressed:
+          () async => sl<SignupUseCase>().call(
+            params: SignupReqParams(
+              email: _emailController.text,
+              password: _passwordController.text,
+            ),
+          ),
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage());
+      },
+      onFailure: (error) {
+        DisplayMessage.errorMessage(error, context);
+      },
     );
   }
 

@@ -3,26 +3,26 @@ import 'package:dio/dio.dart';
 import 'package:movie_app/core/constants/api_url.dart';
 import 'package:movie_app/core/network/dio_client.dart';
 import 'package:movie_app/data/auth/models/signup_req_params.dart';
+import 'package:movie_app/service_locator.dart';
 
-abstract class AuthApiService {
-  Future<Either<String, dynamic>> signup(SignupReqParams params);
+abstract class AuthService {
+  Future<Either> signup(SignupReqParams params);
 }
 
-class AuthApiServiceImpl extends AuthApiService {
-  final DioClient dioClient;
-
-  AuthApiServiceImpl(this.dioClient);
-
+class AuthApiServiceImpl extends AuthService {
   @override
-  Future<Either<String, dynamic>> signup(SignupReqParams params) async {
+  Future<Either> signup(SignupReqParams params) async {
     try {
-      final response = await dioClient.post(
+      var response = await sl<DioClient>().post(
         ApiUrl.signup,
         data: params.toMap(),
       );
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response?.data['message'] ?? 'Signup failed');
+      print(params.toMap());
+      print('🧨 Dio Error: ${e.response?.data}');
+      print('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response!.data['message']);
     }
   }
 }

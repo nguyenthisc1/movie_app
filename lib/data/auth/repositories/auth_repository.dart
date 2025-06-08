@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:movie_app/data/auth/models/signup_req_params.dart';
 import 'package:movie_app/data/auth/sources/auth_api_service.dart';
 import 'package:movie_app/domain/auth/repositories/auth_repository.dart';
+import 'package:movie_app/service_locator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // class AuthRepositoryImpl extends AuthRepository {
 //   final bool useFirebase;
@@ -26,12 +28,20 @@ import 'package:movie_app/domain/auth/repositories/auth_repository.dart';
 // var data2 = AuthRepositoryImpl(useFirebase: false, useGoogle: true);
 
 class AuthRepositoryImpl extends AuthRepository {
-  final AuthApiService authApiService;
-
-  AuthRepositoryImpl({required this.authApiService});
-
   @override
-  Future<Either<String, dynamic>> signup(SignupReqParams params) {
-    return authApiService.signup(params);
+  Future<Either> signup(SignupReqParams params) async {
+    var data = await sl<AuthService>().signup(params);
+    return data.fold(
+      (error) {
+        print(error);
+        return Left(error);
+      },
+      (data) async {
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        sharedPreferences.setString('token', data['user']['token']);
+        return Right(data);
+      },
+    );
   }
 }

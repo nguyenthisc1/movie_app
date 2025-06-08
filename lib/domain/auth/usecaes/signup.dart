@@ -3,13 +3,11 @@ import 'package:dartz/dartz.dart';
 import 'package:movie_app/core/usecase/usecase.dart';
 import 'package:movie_app/data/auth/models/signup_req_params.dart';
 import 'package:movie_app/domain/auth/repositories/auth_repository.dart';
+import 'package:movie_app/service_locator.dart';
 
-class SignupUsecase extends UseCase<Either, SignupReqParams> {
-  final AuthRepository authRepository;
-  SignupUsecase({required this.authRepository});
-
+class SignupUseCase extends UseCase<Either, SignupReqParams> {
   @override
   Future<Either> call({SignupReqParams? params}) async {
-    return await authRepository.signup(params!);
+    return await sl<AuthRepository>().signup(params!);
   }
 }

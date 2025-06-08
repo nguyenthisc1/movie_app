@@ -16,7 +16,7 @@ class SpashPage extends StatelessWidget {
       body: BlocListener<SplashCubic, SplashState>(
         listener: (context, state) {
           if (state is UnAuthenticated) {
-            AppNavigator.pushReplacement(context, const SigninPage());
+            AppNavigator.pushReplacement(context, SigninPage());
           }
 
           if (state is Authenticated) {

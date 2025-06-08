@@ -1,11 +1,19 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/common/helper/messages/display_message.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
+import 'package:movie_app/data/auth/models/signup_req_params.dart';
+import 'package:movie_app/domain/auth/usecaes/signup.dart';
 import 'package:movie_app/presentation/auth/pages/signin_page.dart';
+import 'package:movie_app/presentation/home/pages/home_page.dart';
+import 'package:movie_app/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+  SignupPage({super.key});
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,7 @@ class SignupPage extends StatelessWidget {
             const SizedBox(height: 12),
             _passField(),
             const SizedBox(height: 36),
-            _signupButton(),
+            _signupButton(context),
             const SizedBox(height: 24),
             _signinText(context),
           ],
@@ -39,19 +47,37 @@ class SignupPage extends StatelessWidget {
   }
 
   Widget _emailField() {
-    return TextField(decoration: InputDecoration(hintText: 'Email'));
+    return TextField(
+      controller: _emailController,
+      decoration: InputDecoration(hintText: 'Email'),
+    );
   }
 
   Widget _passField() {
-    return TextField(decoration: InputDecoration(hintText: 'Password'));
+    return TextField(
+      controller: _passwordController,
+      decoration: InputDecoration(hintText: 'Password'),
+    );
   }
 
-  Widget _signupButton() {
+  Widget _signupButton(BuildContext context) {
     return ReactiveButton(
-      title: "Sign in",
-      onPressed: () async {},
-      onSuccess: () {},
-      onFailure: (error) {},
+      title: "Sign up",
+      onPressed:
+          () async => await sl<SignupUseCase>().call(
+            params: SignupReqParams(
+              email: _emailController.text,
+              password: _passwordController.text,
+            ),
+          ),
+
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage());
+      },
+      onFailure: (error) {
+        print(error);
+        DisplayMessage.errorMessage(error, context);
+      },
     );
   }
 
