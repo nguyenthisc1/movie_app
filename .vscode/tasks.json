@@ -8,7 +8,7 @@
 		{
 			"label": "Flutter-Launch-iOS",
 			"type": "shell",
-			"command": "flutter run -d 'iPhone 15 Pro Max' --dart-define=BASE_URL=http://localhost:8080/"
+			"command": "flutter run -d 'iPhone 15 Pro Max' --dart-define=BASE_URL=http://192.168.1.8:8080/"
 		},
 		{
 			"label": "Flutter-Launch-Android",
