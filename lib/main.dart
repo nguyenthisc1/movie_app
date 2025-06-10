@@ -1,9 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/configs/theme/app_theme.dart';
-import 'package:movie_app/firebase_option.dart';
 import 'package:movie_app/presentation/splash/bloc/splash_cubic.dart';
 import 'package:movie_app/presentation/splash/pages/spash_page.dart';
 import 'package:movie_app/service_locator.dart';
@@ -11,7 +9,7 @@ import 'package:movie_app/service_locator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   setupServiceLocator();
 

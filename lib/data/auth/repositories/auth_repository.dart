@@ -6,28 +6,6 @@ import 'package:movie_app/domain/auth/repositories/auth_repository.dart';
 import 'package:movie_app/service_locator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// class AuthRepositoryImpl extends AuthRepository {
-//   final bool useFirebase;
-//   final bool useGoogle;
-
-//   AuthRepositoryImpl({required this.useFirebase, required this.useGoogle});
-
-//   @override
-//   Future<Either> signup(SignupReqParams params) async {
-//     if (useFirebase) {
-//       return await AuthFirebaseServiceImpl().signup(params);
-//     } else if (useGoogle) {
-//       return await AuthGoogleServiceImpl().signup(params);
-//     } else {
-//       return await AuthApiServiceImpl().signup(params);
-//     }
-//   }
-// }
-
-// var data = AuthRepositoryImpl(useFirebase: true, useGoogle: false);
-
-// var data2 = AuthRepositoryImpl(useFirebase: false, useGoogle: true);
-
 class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Either> signup(SignupReqParams params) async {
@@ -60,5 +38,11 @@ class AuthRepositoryImpl extends AuthRepository {
         return Right(data);
       },
     );
+  }
+
+  @override
+  Future<bool> isLoggedIn() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token') == null;
   }
 }
