@@ -4,6 +4,8 @@ class ApiUrl {
     defaultValue: 'http://localhost:8080/',
   );
 
+  static const apiV = 'api/v1';
+
   // {
   // 	"label": "Flutter-Launch-All",
   // 	"dependsOn": ["Flutter-Launch-iOS", "Flutter-Launch-Android", "Flutter-Launch-Web"]
@@ -25,15 +27,15 @@ class ApiUrl {
   // }
 
   // Auth
-  static const signup = 'api/v1/auth/signup';
-  static const signin = 'api/v1/auth/signin';
+  static const signup = '$apiV/auth/signup';
+  static const signin = '$apiV/auth/signin';
 
   // Movies
-  static const moviesTrending = 'api/v1/movie/trending';
-  static const moviesNowPlaying = 'api/v1/movie/nowplaying';
-  static const movieTrailer = 'api/v1/movie/:id/trailer';
-  static const movieDetails = 'api/v1/movie/:id/details';
-  static const movieSimilar = 'api/v1/movie/:id/similar';
-  static const movieRecommendations = 'api/v1/movie/:id/recommendations';
-  static const moviesByCategory = 'api/v1/movie/:category';
+  static const moviesTrending = '$apiV/movie/trending';
+  static const moviesNowPlaying = '$apiV/movie/nowplaying';
+  static const movieTrailer = '$apiV/movie/:id/trailer';
+  static const movieDetails = '$apiV/movie/:id/details';
+  static const movieSimilar = '$apiV/movie/:id/similar';
+  static const movieRecommendations = '$apiV/movie/:id/recommendations';
+  static const moviesByCategory = '$apiV/movie/:category';
 }
