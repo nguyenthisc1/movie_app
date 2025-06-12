@@ -47,6 +47,7 @@ class SigninPage extends StatelessWidget {
   }
 
   Widget _emailField() {
+    _emailController.text = 'adminadmin@gmail.com';
     return TextField(
       controller: _emailController,
       decoration: InputDecoration(hintText: 'Email'),
@@ -54,6 +55,7 @@ class SigninPage extends StatelessWidget {
   }
 
   Widget _passField() {
+    _passwordController.text = 'adminadmin';
     return TextField(
       controller: _passwordController,
       decoration: InputDecoration(hintText: 'Password'),

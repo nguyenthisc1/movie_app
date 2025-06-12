@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movie_app/common/wigets/appbar.dart';
+import 'package:movie_app/common/wigets/appbar/appbar.dart';
 import 'package:movie_app/core/configs/assets/app_vectors.dart';
-import 'package:movie_app/presentation/home/widgets/trending.dart';
-import 'package:movie_app/presentation/home/widgets/trending_text.dart';
+import 'package:movie_app/presentation/home/widgets/category_text.dart';
+import 'package:movie_app/presentation/home/widgets/now_playing_movies.dart';
+import 'package:movie_app/presentation/home/widgets/trending_movies.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,12 +20,17 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TrendingText(),
+            CategoryText(title: 'Trending'),
             const SizedBox(height: 12),
             TrendingMovies(),
+            const SizedBox(height: 24),
+            CategoryText(title: 'Now Playing'),
+            const SizedBox(height: 12),
+            NowPlayingMovies(),
           ],
         ),
       ),
