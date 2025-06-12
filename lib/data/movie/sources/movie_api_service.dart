@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/constants/api_url.dart';
@@ -34,9 +36,16 @@ class MovieApiServiceImpl extends MovieService {
   }
 
   @override
-  Future<Either> getNowPlayingMovies() {
-    // TODO: implement getNowPlayingMovies
-    throw UnimplementedError();
+  Future<Either> getNowPlayingMovies() async {
+    try {
+      var response = await sl<DioClient>().get(ApiUrl.moviesNowPlaying);
+
+      return Right(response.data);
+    } on DioException catch (e) {
+      print('🧨 Dio Error: ${e.response?.data}');
+      print('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response!.data['message']);
+    }
   }
 
   @override
