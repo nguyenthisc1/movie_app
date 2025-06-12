@@ -38,4 +38,14 @@ class ApiUrl {
   static const movieSimilar = '$apiV/movie/:id/similar';
   static const movieRecommendations = '$apiV/movie/:id/recommendations';
   static const moviesByCategory = '$apiV/movie/:category';
+
+  // TV Shows
+  static const tvTrending = '$apiV/tv/trending';
+  static const tvPopular = '$apiV/tv/popular';
+  static const tvTrailers = '$apiV/tv/:id/trailers';
+  static const tvDetails = '$apiV/tv/:id/details';
+  static const tvSimilar = '$apiV/tv/:id/similar';
+  static const tvRecommendations = '$apiV/tv/:id/recommendations';
+  static const tvKeywords = '$apiV/tv/:id/keywords';
+  static const tvsByCategory = '$apiV/tv/:category';
 }
