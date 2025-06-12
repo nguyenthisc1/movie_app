@@ -1,8 +1,6 @@
-import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/common/wigets/movies/movie.card.dart';
-import 'package:movie_app/core/configs/assets/app_images.dart';
 import 'package:movie_app/presentation/home/bloc/now_playing_cubit.dart';
 import 'package:movie_app/presentation/home/bloc/now_playing_state.dart';
 
