@@ -48,4 +48,6 @@ class ApiUrl {
   static const tvRecommendations = '$apiV/tv/:id/recommendations';
   static const tvKeywords = '$apiV/tv/:id/keywords';
   static const tvsByCategory = '$apiV/tv/:category';
+
+  static const trailerBase = 'https://www.youtube.com/watch?v=';
 }

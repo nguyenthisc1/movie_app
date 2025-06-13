@@ -11,8 +11,9 @@ import 'package:movie_app/domain/auth/usecaes/is_logged_in.dart';
 import 'package:movie_app/domain/auth/usecaes/signin.dart';
 import 'package:movie_app/domain/auth/usecaes/signup.dart';
 import 'package:movie_app/domain/movie/repositories/movie_repository.dart';
-import 'package:movie_app/domain/movie/usecaes/get_now_playing_movies.dart';
-import 'package:movie_app/domain/movie/usecaes/get_trending_movies.dart';
+import 'package:movie_app/domain/movie/usecaes/get_now_playing_movies_usecase.dart';
+import 'package:movie_app/domain/movie/usecaes/get_trailer_movie_usecase.dart';
+import 'package:movie_app/domain/movie/usecaes/get_trending_movies_usecase.dart';
 import 'package:movie_app/domain/tv/repositories/tv_repository.dart';
 import 'package:movie_app/domain/tv/usecaes/get_popular_tv.dart';
 
@@ -41,5 +42,9 @@ void setupServiceLocator() {
   sl.registerLazySingleton<GetNowPlayingMoviesUseCase>(
     () => GetNowPlayingMoviesUseCase(),
   );
+  sl.registerLazySingleton<GetTrailerMovieUseCase>(
+    () => GetTrailerMovieUseCase(),
+  );
+
   sl.registerLazySingleton<GetPopularTVUseCase>(() => GetPopularTVUseCase());
 }
