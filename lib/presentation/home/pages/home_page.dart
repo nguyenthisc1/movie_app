@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/common/wigets/appbar/appbar.dart';
 import 'package:movie_app/core/configs/assets/app_vectors.dart';
-import 'package:movie_app/presentation/home/widgets/category_text.dart';
-import 'package:movie_app/presentation/home/widgets/now_playing_movies.dart';
-import 'package:movie_app/presentation/home/widgets/popular_tv.dart';
-import 'package:movie_app/presentation/home/widgets/trending_movies.dart';
+
+import '../widgets/category_text.dart';
+import '../widgets/now_playing_movies.dart';
+import '../widgets/popular_tv.dart';
+import '../widgets/trending_movies.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
