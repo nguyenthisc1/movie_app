@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:movie_app/common/wigets/appbar/appbar.dart';
 import 'package:movie_app/core/configs/assets/app_vectors.dart';
 import 'package:movie_app/domain/movie/entities/movie_entity.dart';
+import 'package:movie_app/presentation/watch/widgets/video_player.dart';
 
 class MovieWatchPage extends StatelessWidget {
   final MovieEntity movieEntity;
@@ -23,7 +24,7 @@ class MovieWatchPage extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
+          children: [VideoPlayer(movieId: movieEntity.id!)],
         ),
       ),
     );

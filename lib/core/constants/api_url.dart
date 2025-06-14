@@ -1,8 +1,11 @@
 class ApiUrl {
-  static const String baseUrl = String.fromEnvironment(
-    'BASE_URL',
-    defaultValue: 'http://localhost:8080/',
-  );
+  // static const String baseUrl = String.fromEnvironment(
+  //   'BASE_URL',
+  //   defaultValue: 'http://localhost:8080/',
+  // );
+
+  static const String baseUrl =
+      'https://backend-netflix-production-c54a.up.railway.app/';
 
   static const apiV = 'api/v1';
 
@@ -31,8 +34,9 @@ class ApiUrl {
   static const signin = '$apiV/auth/signin';
 
   // Movies
-  static const moviesTrending = '$apiV/movie/trending';
-  static const moviesNowPlaying = '$apiV/movie/nowplaying';
+  static const movieUrl = '$apiV/movie';
+  static const moviesTrending = '$movieUrl/trending';
+  static const moviesNowPlaying = '$movieUrl/nowplaying';
   static const movieTrailer = '$apiV/movie/:id/trailer';
   static const movieDetails = '$apiV/movie/:id/details';
   static const movieSimilar = '$apiV/movie/:id/similar';

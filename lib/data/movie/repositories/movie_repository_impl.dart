@@ -56,7 +56,6 @@ class MovieRepositoryImpl extends MovieRepository {
   @override
   Future<Either> getTrailerMovie(int movieId) async {
     var returnedData = await sl<MovieService>().getTrailerMovie(movieId);
-
     return returnedData.fold(
       (error) {
         return Left(error);

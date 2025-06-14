@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/entities/movie_trailer_entity.dart';
-import 'package:movie_app/domain/movie/usecaes/get_trailer_movie_usecase.dart';
+import 'package:movie_app/domain/movie/usecases/get_trailer_movie_usecase.dart';
 import 'package:movie_app/presentation/watch/bloc/trailer_state.dart';
 import 'package:movie_app/service_locator.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -8,8 +8,8 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class TrailerCubit extends Cubit<TrailerState> {
   TrailerCubit() : super(TrailerLoading());
 
-  void getTrailerMovie() async {
-    var returnedData = await sl<GetTrailerMovieUseCase>().call();
+  void getTrailerMovie(int movieId) async {
+    var returnedData = await sl<GetTrailerMovieUseCase>().call(params: movieId);
 
     returnedData.fold(
       (error) {

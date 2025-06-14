@@ -32,7 +32,9 @@ class MovieApiServiceImpl extends MovieService {
   @override
   Future<Either> getTrailerMovie(int movieId) async {
     try {
-      var response = await sl<DioClient>().get(ApiUrl.movieTrailer);
+      var response = await sl<DioClient>().get(
+        '${ApiUrl.movieUrl}/$movieId/trailer',
+      );
 
       return Right(response.data);
     } on DioException catch (e) {

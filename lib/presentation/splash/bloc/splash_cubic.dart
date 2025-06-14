@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/domain/auth/usecaes/is_logged_in.dart';
+import 'package:movie_app/domain/auth/usecases/is_logged_in.dart';
 import 'package:movie_app/presentation/splash/bloc/splash_state.dart';
 import 'package:movie_app/service_locator.dart';
 
