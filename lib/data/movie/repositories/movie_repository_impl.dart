@@ -73,4 +73,85 @@ class MovieRepositoryImpl extends MovieRepository {
       },
     );
   }
+
+  @override
+  Future<Either> getCategoryMovies(String category) async {
+    // TODO: implement getRecommendationMovies
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either> getDetailMovie(int movieId) async {
+    var returnedData = await sl<MovieService>().getDetailMovie(movieId);
+
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        final content = data['detail'];
+
+        if (content == null) return Left('No trailer data found!');
+
+        final trailer = MovieTrailerMapper.toEntity(
+          TrailerModel.fromJson(content),
+        );
+
+        return Right(trailer);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getRecommendationMovies(int movieId) async {
+    var returnedData = await sl<MovieService>().getRecommendationMovies(
+      movieId,
+    );
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var movies =
+            List.from(data['content'])
+                .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
+                .toList();
+        return Right(movies);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getsimilarMovies(int movieId) async {
+    var returnedData = await sl<MovieService>().getSimilarMovies(movieId);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var movies =
+            List.from(data['content'])
+                .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
+                .toList();
+        return Right(movies);
+      },
+    );
+  }
+
+  @override
+  Future<Either> searchMovie(String query) async {
+    var returnedData = await sl<MovieService>().searchMovie(query);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var movies =
+            List.from(data['content'])
+                .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
+                .toList();
+        return Right(movies);
+      },
+    );
+  }
 }
