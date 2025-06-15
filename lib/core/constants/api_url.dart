@@ -54,4 +54,5 @@ class ApiUrl {
   static const tvsByCategory = '$apiV/tv/:category';
 
   static const trailerBase = 'https://www.youtube.com/watch?v=';
+  static const search = '${apiV}search/';
 }
