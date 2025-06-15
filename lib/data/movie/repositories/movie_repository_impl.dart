@@ -75,12 +75,6 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<Either> getCategoryMovies(String category) async {
-    // TODO: implement getRecommendationMovies
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Either> getDetailMovie(int movieId) async {
     var returnedData = await sl<MovieService>().getDetailMovie(movieId);
 
@@ -93,11 +87,11 @@ class MovieRepositoryImpl extends MovieRepository {
 
         if (content == null) return Left('No trailer data found!');
 
-        final trailer = MovieTrailerMapper.toEntity(
+        final detail = MovieTrailerMapper.toEntity(
           TrailerModel.fromJson(content),
         );
 
-        return Right(trailer);
+        return Right(detail);
       },
     );
   }
@@ -112,8 +106,12 @@ class MovieRepositoryImpl extends MovieRepository {
         return Left(error);
       },
       (data) {
+        final content = data['content'];
+
+        if (content is! List) return Left('Invalid data!');
+
         var movies =
-            List.from(data['content'])
+            content
                 .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
                 .toList();
         return Right(movies);
@@ -129,8 +127,12 @@ class MovieRepositoryImpl extends MovieRepository {
         return Left(error);
       },
       (data) {
+        final content = data['content'];
+
+        if (content is! List) return Left('Invalid data!');
+
         var movies =
-            List.from(data['content'])
+            content
                 .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
                 .toList();
         return Right(movies);
@@ -146,12 +148,22 @@ class MovieRepositoryImpl extends MovieRepository {
         return Left(error);
       },
       (data) {
+        final content = data['content'];
+
+        if (content is! List) return Left('Invalid data!');
+
         var movies =
-            List.from(data['content'])
+            content
                 .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
                 .toList();
         return Right(movies);
       },
     );
+  }
+
+  @override
+  Future<Either> getCategoryMovies(String category) async {
+    // TODO: implement getRecommendationMovies
+    throw UnimplementedError();
   }
 }

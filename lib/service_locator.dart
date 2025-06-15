@@ -19,7 +19,15 @@ import 'package:movie_app/domain/movie/usecases/get_similar_movies.dart';
 import 'package:movie_app/domain/movie/usecases/get_trailer_movie_usecase.dart';
 import 'package:movie_app/domain/movie/usecases/get_trending_movies_usecase.dart';
 import 'package:movie_app/domain/tv/repositories/tv_repository.dart';
+import 'package:movie_app/domain/tv/usecases/get_keyword_tv.dart';
 import 'package:movie_app/domain/tv/usecases/get_popular_tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_trending_tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_trailers_tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_details_tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_similar_tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_recommendation_tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_by_category_tv.dart';
+import 'package:movie_app/domain/tv/usecases/search_tv.dart';
 
 final sl = GetIt.instance;
 
@@ -31,7 +39,7 @@ void setupServiceLocator() {
   sl.registerLazySingleton<MovieService>(() => MovieApiServiceImpl());
   sl.registerLazySingleton<TVApiService>(() => TvApiServiceImpl());
 
-  // Repostories
+  // Repositories
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
   sl.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl());
   sl.registerLazySingleton<TVRepository>(() => TVRepositoryImpl());
@@ -62,4 +70,16 @@ void setupServiceLocator() {
     () => GetCategoryMoviesUseCase(),
   );
   sl.registerLazySingleton<GetPopularTVUseCase>(() => GetPopularTVUseCase());
+  sl.registerLazySingleton<GetTrendingTVUseCase>(() => GetTrendingTVUseCase());
+  sl.registerLazySingleton<GetTrailersTVUseCase>(() => GetTrailersTVUseCase());
+  sl.registerLazySingleton<GetDetailsTVUseCase>(() => GetDetailsTVUseCase());
+  sl.registerLazySingleton<GetSimilarTVUseCase>(() => GetSimilarTVUseCase());
+  sl.registerLazySingleton<GetRecommendationTVUseCase>(
+    () => GetRecommendationTVUseCase(),
+  );
+  sl.registerLazySingleton<GetKeywordTVUseCase>(() => GetKeywordTVUseCase());
+  sl.registerLazySingleton<GetByCategoryTVUseCase>(
+    () => GetByCategoryTVUseCase(),
+  );
+  sl.registerLazySingleton<SearchTVUseCase>(() => SearchTVUseCase());
 }

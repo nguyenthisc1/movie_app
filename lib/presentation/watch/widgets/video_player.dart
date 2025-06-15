@@ -6,13 +6,13 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../bloc/trailer_state.dart';
 
 class VideoPlayer extends StatelessWidget {
-  final int movieId;
-  const VideoPlayer({required this.movieId, super.key});
+  final int id;
+  const VideoPlayer({required this.id, super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrailerCubit()..getTrailerMovie(movieId),
+      create: (context) => TrailerCubit()..getTrailerMovie(id),
       child: BlocBuilder<TrailerCubit, TrailerState>(
         builder: (context, state) {
           if (state is TrailerLoading) {
