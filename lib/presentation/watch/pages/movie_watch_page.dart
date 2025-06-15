@@ -19,7 +19,7 @@ class MovieWatchPage extends StatelessWidget {
     return Scaffold(
       appBar: const BasicAppbar(hideBack: false),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
