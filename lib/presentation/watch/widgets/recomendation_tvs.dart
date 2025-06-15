@@ -4,12 +4,12 @@ import 'package:movie_app/common/cubic/generic_data_cubic.dart';
 import 'package:movie_app/common/cubic/generic_data_state.dart';
 import 'package:movie_app/common/wigets/tv/tv_card.dart';
 import 'package:movie_app/domain/tv/entities/tv_entity.dart';
-import 'package:movie_app/domain/tv/usecases/get_similar_tv_usecase.dart';
+import 'package:movie_app/domain/tv/usecases/get_recommendation_tv_usecase.dart';
 import 'package:movie_app/service_locator.dart';
 
-class SimilarTVs extends StatelessWidget {
+class RecommendationTVs extends StatelessWidget {
   final int tvId;
-  const SimilarTVs({required this.tvId, super.key});
+  const RecommendationTVs({required this.tvId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SimilarTVs extends StatelessWidget {
       create:
           (context) =>
               GenericDataCubit()..getData<List<TVEntity>>(
-                sl<GetSimilarTVUseCase>(),
+                sl<GetRecommendationTVUseCase>(),
                 params: tvId,
               ),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
@@ -31,7 +31,7 @@ class SimilarTVs extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Similar',
+                  'Recommendation',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 const SizedBox(height: 16),
