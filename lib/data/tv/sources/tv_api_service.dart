@@ -31,7 +31,9 @@ class TvApiServiceImpl extends TVApiService {
     } on DioException catch (e) {
       logger.d('🧨 Dio Error: ${e.response?.data}');
       logger.d('🧨 Status code: ${e.response?.statusCode}');
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
@@ -44,7 +46,9 @@ class TvApiServiceImpl extends TVApiService {
     } on DioException catch (e) {
       logger.d('🧨 Dio Error: ${e.response?.data}');
       logger.d('🧨 Status code: ${e.response?.statusCode}');
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
@@ -52,71 +56,89 @@ class TvApiServiceImpl extends TVApiService {
   Future<Either> getRecommendationTVs(int tvId) async {
     try {
       var response = await sl<DioClient>().get(
-        '${ApiUrl.tvUrl}$tvId/recommendations',
+        '${ApiUrl.tvUrl}/$tvId/recommendations',
       );
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
   @override
   Future<Either> getSimilarTVs(int tvId) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}$tvId/similar');
+      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}/$tvId/similar');
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
   @override
   Future<Either> getTVKeywords(int tvId) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}$tvId/keywords');
+      var response = await sl<DioClient>().get(
+        '${ApiUrl.tvUrl}/$tvId/keywords',
+      );
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
   @override
   Future<Either> searchTV(String query) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.search}tv/$query');
+      var response = await sl<DioClient>().get('${ApiUrl.search}/tv/$query');
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
   @override
   Future<Either> getTVDetails(int tvId) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}$tvId/details');
+      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}/$tvId/details');
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
   @override
   Future<Either> getTVTrailers(int tvId) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}$tvId/trailers');
+      var response = await sl<DioClient>().get(
+        '${ApiUrl.tvUrl}/$tvId/trailers',
+      );
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 
   @override
   Future<Either> getTVsByCategory(String category) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}$category');
+      var response = await sl<DioClient>().get('${ApiUrl.tvUrl}/$category');
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
+      return Left(e.response?.data?['message'] ?? 'An error occurred');
     }
   }
 }
