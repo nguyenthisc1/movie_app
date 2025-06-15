@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 import 'package:movie_app/core/constants/api_url.dart';
 import 'package:movie_app/core/network/dio_client.dart';
 import 'package:movie_app/data/auth/models/signin_req_params.dart';
@@ -12,6 +13,10 @@ abstract class AuthService {
 }
 
 class AuthApiServiceImpl extends AuthService {
+  Logger logger = Logger(
+    printer: PrettyPrinter(methodCount: 0, colors: true, printEmojis: true),
+  );
+
   @override
   Future<Either> signup(SignupReqParams params) async {
     try {
@@ -21,9 +26,9 @@ class AuthApiServiceImpl extends AuthService {
       );
       return Right(response.data);
     } on DioException catch (e) {
-      print(params.toMap());
-      print('🧨 Dio Error: ${e.response?.data}');
-      print('🧨 Status code: ${e.response?.statusCode}');
+      logger.d(params.toMap());
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
       return Left(e.response!.data['message']);
     }
   }
@@ -37,9 +42,9 @@ class AuthApiServiceImpl extends AuthService {
       );
       return Right(response.data);
     } on DioException catch (e) {
-      print(params.toMap());
-      print('🧨 Dio Error: ${e.response?.data}');
-      print('🧨 Status code: ${e.response?.statusCode}');
+      logger.d(params.toMap());
+      logger.d('🧨 Dio Error: ${e.response?.data}');
+      logger.d('🧨 Status code: ${e.response?.statusCode}');
       return Left(e.response!.data['message']);
     }
   }
