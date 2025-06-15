@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/common/cubic/generic_data_cubic.dart';
+import 'package:movie_app/common/cubic/generic_data_state.dart';
 import 'package:movie_app/common/wigets/movies/movie.card.dart';
-import 'package:movie_app/presentation/home/bloc/now_playing_cubit.dart';
-import 'package:movie_app/presentation/home/bloc/now_playing_state.dart';
+import 'package:movie_app/domain/movie/entities/movie_entity.dart';
+import 'package:movie_app/domain/movie/usecases/get_now_playing_movies_usecase.dart';
+import 'package:movie_app/service_locator.dart';
 
 class NowPlayingMovies extends StatelessWidget {
   const NowPlayingMovies({super.key});
@@ -10,14 +13,17 @@ class NowPlayingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NowPlayingCubit()..getNowPlayingMovies(),
-      child: BlocBuilder<NowPlayingCubit, NowPlayingState>(
+      create:
+          (context) =>
+              GenericDataCubit()
+                ..getData<List<MovieEntity>>(sl<GetNowPlayingMoviesUseCase>()),
+      child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
-          if (state is NowPlayingMoviesLoading) {
+          if (state is DataLoading) {
             return Center(child: const CircularProgressIndicator());
           }
 
-          if (state is NowPlayingMoviesLoaded) {
+          if (state is DataLoaded) {
             return SizedBox(
               height: 300,
               child: ListView.separated(
@@ -25,15 +31,15 @@ class NowPlayingMovies extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 itemBuilder: (context, index) {
-                  return MovieCard(movieEntity: state.movies[index]);
+                  return MovieCard(movieEntity: state.data[index]);
                 },
                 separatorBuilder: (context, index) => const SizedBox(width: 16),
-                itemCount: state.movies.length,
+                itemCount: state.data.length,
               ),
             );
           }
 
-          if (state is FailureLoadedNowPlayingMovies) {
+          if (state is FailureLoadData) {
             return Text(state.errorMessage);
           }
 
