@@ -4,7 +4,7 @@ import 'package:movie_app/common/cubic/generic_data_cubic.dart';
 import 'package:movie_app/common/cubic/generic_data_state.dart';
 import 'package:movie_app/common/wigets/movies/movie_card.dart';
 import 'package:movie_app/domain/movie/entities/movie_entity.dart';
-import 'package:movie_app/domain/movie/usecases/get_similar_movies.dart';
+import 'package:movie_app/domain/movie/usecases/get_similar_movies_usecase.dart';
 import 'package:movie_app/service_locator.dart';
 
 class SimilarMovies extends StatelessWidget {

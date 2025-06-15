@@ -4,7 +4,7 @@ import 'package:movie_app/common/cubic/generic_data_cubic.dart';
 import 'package:movie_app/common/cubic/generic_data_state.dart';
 import 'package:movie_app/common/wigets/tv/tv_card.dart';
 import 'package:movie_app/domain/tv/entities/tv_entity.dart';
-import 'package:movie_app/domain/tv/usecases/get_popular_tv.dart';
+import 'package:movie_app/domain/tv/usecases/get_popular_tv_usecase.dart';
 import 'package:movie_app/service_locator.dart';
 
 class PopularTv extends StatelessWidget {

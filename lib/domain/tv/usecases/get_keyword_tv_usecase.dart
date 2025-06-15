@@ -3,9 +3,9 @@ import 'package:movie_app/core/usecase/usecase.dart';
 import 'package:movie_app/domain/tv/repositories/tv_repository.dart';
 import 'package:movie_app/service_locator.dart';
 
-class GetRecommendationTVUseCase extends UseCase<Either, dynamic> {
+class GetKeywordTVUseCase extends UseCase<Either, int> {
   @override
-  Future<Either> call({params}) async {
-    return await sl<TVRepository>().getRecommendationTVs(params!);
+  Future<Either> call({int? params}) async {
+    return await sl<TVRepository>().getKeywordsTV(params!);
   }
 }
