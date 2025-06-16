@@ -42,11 +42,23 @@ class MovieApiServiceImpl extends MovieService {
         '${ApiUrl.movieUrl}/$movieId/trailer',
       );
 
+      logger.d(response);
+
       return Right(response.data);
     } on DioException catch (e) {
       logger.d('🧨 Dio Error: ${e.response?.data}');
       logger.d('🧨 Status code: ${e.response?.statusCode}');
-      return Left(e.response!.data['message']);
+      final errorData = e.response?.data;
+      String errorMessage = 'No trailer data found!.';
+
+      if (errorData is Map<String, dynamic> &&
+          errorData.containsKey('message')) {
+        errorMessage = errorData['message'];
+      } else if (errorData is String) {
+        errorMessage = errorData;
+      }
+
+      return Left(errorMessage);
     }
   }
 

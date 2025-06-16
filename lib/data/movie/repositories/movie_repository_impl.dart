@@ -58,7 +58,7 @@ class MovieRepositoryImpl extends MovieRepository {
     var returnedData = await sl<MovieService>().getTrailerMovie(movieId);
     return returnedData.fold(
       (error) {
-        return Left(error);
+        return Left(error ?? 'No trailer data found!');
       },
       (data) {
         final content = data['trailer'];
