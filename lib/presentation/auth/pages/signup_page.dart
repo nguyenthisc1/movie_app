@@ -4,6 +4,7 @@ import 'package:movie_app/common/helper/messages/display_message.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/data/auth/models/signup_req_params.dart';
 import 'package:movie_app/domain/auth/usecases/signup_usecase.dart';
+import 'package:movie_app/main_navigation_bar.dart';
 import 'package:movie_app/presentation/auth/pages/signin_page.dart';
 import 'package:movie_app/presentation/home/pages/home_page.dart';
 import 'package:movie_app/service_locator.dart';
@@ -72,7 +73,7 @@ class SignupPage extends StatelessWidget {
           ),
 
       onSuccess: () {
-        AppNavigator.pushAndRemove(context, const HomePage());
+        AppNavigator.pushAndRemove(context, const MainNavigationBar());
       },
       onFailure: (error) {
         print(error);

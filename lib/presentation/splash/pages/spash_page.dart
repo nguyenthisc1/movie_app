@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app/core/configs/assets/app_images.dart';
+import 'package:movie_app/main_navigation_bar.dart';
 import 'package:movie_app/presentation/auth/pages/signin_page.dart';
-import 'package:movie_app/presentation/home/pages/home_page.dart';
 import 'package:movie_app/presentation/splash/bloc/splash_cubic.dart';
 import 'package:movie_app/presentation/splash/bloc/splash_state.dart';
 
@@ -20,7 +20,7 @@ class SpashPage extends StatelessWidget {
           }
 
           if (state is Authenticated) {
-            AppNavigator.pushReplacement(context, const HomePage());
+            AppNavigator.pushReplacement(context, const MainNavigationBar());
           }
         },
         child: Stack(
