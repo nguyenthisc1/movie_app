@@ -26,7 +26,7 @@ class RecommendationTVs extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if (state is DataLoaded) {
+          if (state is DataLoaded && state.data.isNotEmpty) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
