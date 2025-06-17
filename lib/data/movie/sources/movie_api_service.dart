@@ -108,7 +108,7 @@ class MovieApiServiceImpl extends MovieService {
   @override
   Future<Either> searchMovie(String query) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.search}movie/$query');
+      var response = await sl<DioClient>().get('${ApiUrl.search}/movie/$query');
       return Right(response.data);
     } on DioException catch (e) {
       logger.d('🧨 Dio Error: ${e.response?.data}');
